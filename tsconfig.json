@@ -1,0 +1,38 @@
+
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "target": "es5",
+    "sourceMap": false,
+    "allowJs": false,
+    "moduleResolution": "node",
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noImplicitAny": true,
+    "strict": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "noUnusedLocals": true,
+    "allowSyntheticDefaultImports": true,
+    "lib": [
+      "es2015",
+      "es2016",
+      "dom"
+    ],
+    "typeRoots": [
+      "./node_modules/@types",
+      "./typings"
+    ],
+    "declaration": true
+  },
+  "include": [
+    "src/**/*"
+  ],
+  "exclude": [
+    "node_modules/**/*",
+    "src/**/*.test.tsx",
+    "test/**/*"
+  ]
+}

@@ -2,19 +2,24 @@
   "name": "@eyedea/syncano",
   "version": "0.1.0",
   "description": "Custom wrapper for syncano-core library",
-  "main": "lib/index.js",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "repository": "https://github.com/eyedea-io/syncano.git",
   "author": "dev@eyedea.io",
   "license": "MIT",
   "scripts": {
-    "build": "babel src -d lib",
+    "lint": "tslint {src,test}/**/*.ts",
+    "build": "tsc",
+    "prebuild": "rimraf ./dist",
     "prepublish": "npm build"
   },
-  "peerDependencies": {
-    "@syncano/core": "0.12.1"
-  },
   "dependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.6.1"
+    "@syncano/core": "canary"
+  },
+  "devDependencies": {
+    "@types/node": "^9.6.5",
+    "rimraf": "^2.6.2",
+    "tslint": "^5.9.1",
+    "typescript": "^2.8.1"
   }
 }
