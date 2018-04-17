@@ -7,6 +7,12 @@
   "repository": "https://github.com/eyedea-io/syncano.git",
   "author": "dev@eyedea.io",
   "license": "MIT",
+  "keywords": [
+    "syncano",
+    "core",
+    "socket",
+    "endpoint"
+  ],
   "scripts": {
     "lint": "tslint {src,test}/**/*.ts",
     "build": "tsc",
