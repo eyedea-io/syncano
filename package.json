@@ -1,0 +1,20 @@
+{
+  "name": "@eyedea/syncano",
+  "version": "0.1.0",
+  "description": "Custom wrapper for syncano-core library",
+  "main": "lib/index.js",
+  "repository": "https://github.com/eyedea-io/syncano.git",
+  "author": "dev@eyedea.io",
+  "license": "MIT",
+  "scripts": {
+    "build": "babel src -d lib",
+    "prepublish": "npm build"
+  },
+  "peerDependencies": {
+    "@syncano/core": "0.12.1"
+  },
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1"
+  }
+}
