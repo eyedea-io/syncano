@@ -11,7 +11,7 @@
     "lint": "tslint {src,test}/**/*.ts",
     "build": "tsc",
     "prebuild": "rimraf ./dist",
-    "prepublish": "npm build"
+    "prepublish": "yarn build"
   },
   "dependencies": {
     "@syncano/core": "canary"
