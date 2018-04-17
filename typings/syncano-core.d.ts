@@ -1,7 +1,7 @@
 export interface Logger {
-  warn: (...messages: any[]) => undefined;
-  debug: (...messages: any[]) => undefined;
-  info: (...messages: any[]) => undefined;
-  error: (...messages: any[]) => undefined;
-  listen: (callback: (event: Object) => undefined) => undefined;
+  warn: (...messages: any[]) => void;
+  debug: (...messages: any[]) => void;
+  info: (...messages: any[]) => void;
+  error: (...messages: any[]) => void;
+  listen: (callback: (event: Object) => void) => void;
 }
