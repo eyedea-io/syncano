@@ -10,7 +10,7 @@ export class Endpoint {
   constructor(ctx: SyncanoContext) {
     this.ctx = ctx
     this.syncano = new Syncano(ctx)
-    this.logger = new this.syncano.logger(this.ctx.meta.executor)
+    this.logger = this.syncano.logger(this.ctx.meta.executor)
     this.execute()
   }
 
