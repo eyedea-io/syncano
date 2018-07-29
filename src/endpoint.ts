@@ -1,15 +1,21 @@
+import {SyncanoContext, User} from '../typings/syncano-context'
+import {Logger, SyncanoCore} from '../typings/syncano-core'
+import { HttpError } from './http-error'
+
 // tslint:disable-next-line:no-var-requires
 const Syncano = require('@syncano/core')
-import {SyncanoContext, User} from '../typings/syncano-context'
-import {Logger} from '../typings/syncano-core'
+// tslint:disable-next-line:no-var-requires
+const Validator = require('@syncano/validate').default
 
-export class Endpoint {
-  public ctx: SyncanoContext
+export class Endpoint<Args = {
+  [name: string]: any
+}> {
+  public ctx: SyncanoContext<Args>
   public user?: User
   public logger: Logger
   public syncano: any
 
-  constructor(ctx: SyncanoContext) {
+  constructor(ctx: SyncanoContext<Args>) {
     this.ctx = ctx
     this.user = ctx.meta.user
     this.syncano = new Syncano(ctx)
@@ -17,20 +23,37 @@ export class Endpoint {
     this.execute()
   }
 
-  public run?(): any
+  public run?(core: SyncanoCore, ctx: SyncanoContext<Args>): any
 
   public endpointDidCatch(err: Error) {
-    console.log(err)
+    console.warn(err)
   }
 
   private async execute() {
+    const validator = new Validator(this.ctx)
+
     try {
       if (typeof this.run === 'function') {
-        await this.run()
+        try {
+          await validator.validateRequest()
+        } catch (err) {
+          return this.syncano.response.json(err.messages, 400)
+        }
+
+        const res = await this.run(this.syncano, this.ctx)
+        const isResponse = res && res._mimetype && res._status
+
+        if (res instanceof HttpError) {
+          const {message, statusCode} = res
+
+          this.syncano.response.json({message}, statusCode)
+        } else if (res !== null && typeof res === 'object' && !isResponse) {
+          this.syncano.response.json(res)
+        }
       } else {
-        throw new Error(
-          'No `render` method found on the returned endpoint instance: you may have forgotten to define `render`.'
-        )
+        this.syncano.response.json({
+          message: 'No `run` method found on the returned endpoint instance: you may have forgotten to define `run`.'
+        })
       }
     } catch (err) {
       this.endpointDidCatch(err)

@@ -20,7 +20,8 @@
     "prepublish": "yarn build"
   },
   "dependencies": {
-    "@syncano/core": "canary"
+    "@syncano/core": "canary",
+    "@syncano/validate": "^0.12.1"
   },
   "devDependencies": {
     "@types/node": "^9.6.5",
