@@ -1,6 +1,16 @@
-# syncano
+# @eyedea/syncano
 Custom wrapper for @syncano/core library.
 
+[![npm version](https://img.shields.io/npm/v/unswitch.svg)](https://www.npmjs.com/package/unswitch)
+[![license](https://img.shields.io/github/license/eyedea-io/syncano.svg)](https://github.com/eyedea-io/syncano/blob/master/LICENSE)
+
+## Install
+
+```
+$ npm install --save @eyedea/syncano
+```
+
+## Usage
 
 ```ts
 import * as S from '@eyedea/syncano'
@@ -36,3 +46,7 @@ class Endpoint extends S.Endpoint<Args> {
 
 export default ctx => new Endpoint(ctx)
 ```
+
+## License
+
+MIT © <a href="https://eyedea.io">Eyedea AS</a>
