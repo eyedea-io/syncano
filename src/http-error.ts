@@ -1,3 +1,4 @@
+import { Response } from '../typings/syncano-context'
 export class HttpError extends Error {
   public statusCode: number
   public response?: Response & {
