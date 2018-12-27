@@ -1,9 +1,8 @@
-import {SyncanoContext, User} from '../typings/syncano-context'
-import {Logger, SyncanoCore} from '../typings/syncano-core'
-import { HttpError } from './http-error'
+import {User} from '../typings/syncano-context'
+import {Logger} from '../typings/syncano-core'
+import {HttpError} from './http-error'
 
-// tslint:disable-next-line:no-var-requires
-const Syncano = require('@syncano/core')
+import Syncano, {SyncanoContext} from '@syncano/core'
 // tslint:disable-next-line:no-var-requires
 const Validator = require('@syncano/validate').default
 
@@ -13,7 +12,7 @@ export class Endpoint<Args = {
   public ctx: SyncanoContext<Args>
   public user?: User
   public logger: Logger
-  public syncano: any
+  public syncano: Syncano
 
   constructor(ctx: SyncanoContext<Args>) {
     this.ctx = ctx
@@ -23,21 +22,30 @@ export class Endpoint<Args = {
     this.execute()
   }
 
-  public run?(core: SyncanoCore, ctx: SyncanoContext<Args>): any
+  public run?(core: Syncano, ctx: SyncanoContext<Args>): any
 
   public endpointDidCatch(err: Error) {
     console.warn(err)
   }
 
-  private async execute() {
+  private async execute(): Promise<any> {
     const validator = new Validator(this.ctx)
 
     try {
       if (typeof this.run === 'function') {
         try {
+          this.ctx.meta = {
+            ...this.ctx.meta,
+            metadata: {
+              ...this.ctx.meta.metadata,
+              inputs: {
+                ...(this.ctx.meta.metadata as any).inputs
+              }
+            } as any
+          }
           await validator.validateRequest()
         } catch (err) {
-          return this.syncano.response.json(err.messages, 400)
+          return this.syncano.response.json(err.messages, 400 as any)
         }
 
         const res = await this.run(this.syncano, this.ctx)
@@ -46,7 +54,7 @@ export class Endpoint<Args = {
         if (res instanceof HttpError) {
           const {message, statusCode} = res
 
-          this.syncano.response.json({message}, statusCode)
+          this.syncano.response.json({message}, statusCode as any)
         } else if (res !== null && typeof res === 'object' && !isResponse) {
           this.syncano.response.json(res)
         }
