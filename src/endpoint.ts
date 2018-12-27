@@ -41,7 +41,7 @@ export class Endpoint<Args = {
         }
 
         const res = await this.run(this.syncano, this.ctx)
-        const isResponse = res && res.mimetype && res._status
+        const isResponse = res && res.mimetype && res.status
 
         if (res instanceof HttpError) {
           const {message, statusCode} = res
