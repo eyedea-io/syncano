@@ -1,4 +1,3 @@
-import {User} from '../typings/syncano-context'
 import {Logger} from '../typings/syncano-core'
 import {HttpError} from './http-error'
 
@@ -10,7 +9,11 @@ export class Endpoint<Args = {
   [name: string]: any
 }> {
   public ctx: SyncanoContext<Args>
-  public user?: User
+  public user?: {
+    id: number
+    username: string
+    user_key: string
+  }
   public logger: Logger
   public syncano: Syncano
 
