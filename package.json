@@ -16,17 +16,23 @@
   "scripts": {
     "lint": "tslint {src,test}/**/*.ts",
     "build": "tsc",
+    "codecov": "codecov",
     "prebuild": "rimraf ./dist",
-    "prepublish": "yarn build"
+    "prepublish": "yarn build",
+    "test": "jest"
   },
   "dependencies": {
-    "@syncano/core": "canary",
+    "@syncano/core": "^0.16.0-alpha.6f9c2368",
     "@syncano/validate": "^0.15.0",
     "@types/node-fetch": "^2.1.4"
   },
   "devDependencies": {
+    "@types/jest": "^23.3.10",
     "@types/node": "^10.12.18",
+    "codecov": "^3.1.0",
+    "jest": "^23.6.0",
     "rimraf": "^2.6.2",
+    "ts-jest": "^23.10.5",
     "tslint": "^5.12.0",
     "typescript": "^3.2.2"
   }

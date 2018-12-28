@@ -32,20 +32,14 @@ export class Endpoint<Args = {
   }
 
   private async execute(): Promise<any> {
+    this.ctx.meta.metadata = {
+      ...this.ctx.meta.metadata
+    }
     const validator = new Validator(this.ctx)
 
     try {
       if (typeof this.run === 'function') {
         try {
-          this.ctx.meta = {
-            ...this.ctx.meta,
-            metadata: {
-              ...this.ctx.meta.metadata,
-              inputs: {
-                ...(this.ctx.meta.metadata as any).inputs
-              }
-            } as any
-          }
           await validator.validateRequest()
         } catch (err) {
           return this.syncano.response.json(err.messages, 400 as any)
@@ -60,6 +54,8 @@ export class Endpoint<Args = {
           this.syncano.response.json({message}, statusCode as any)
         } else if (res !== null && typeof res === 'object' && !isResponse) {
           this.syncano.response.json(res)
+        } else if (typeof res === 'string') {
+          this.syncano.response(res)
         }
       } else {
         this.syncano.response.json({
@@ -67,7 +63,13 @@ export class Endpoint<Args = {
         })
       }
     } catch (err) {
-      this.endpointDidCatch(err)
+      if (err instanceof HttpError) {
+        const {message, statusCode} = err
+
+        this.syncano.response.json({message}, statusCode as any)
+      } else {
+        this.endpointDidCatch(err)
+      }
     }
   }
 }
