@@ -38,13 +38,14 @@ jobs:
     steps:
       - restore_cache:
           key: repo-{{ .Environment.CIRCLE_SHA1 }}
+      - run: yarn lint
       - run: yarn test
       - run: yarn codecov
       - store_artifacts:
           path: ~/repo/.coverage
           destination: coverage
 
-  deploy_staging:
+  publish_canary:
     name: Deploy
     docker:
       - image: circleci/node:latest
@@ -57,7 +58,7 @@ jobs:
       - run: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" >> ~/.npmrc
       - run: npm publish --tag canary --access=public
 
-  deploy:
+  publish:
     name: Deploy
     docker:
       - image: circleci/node:latest
@@ -78,13 +79,13 @@ workflows:
       - test:
           requires:
             - build
-      - deploy_staging:
+      - publish_canary:
           requires:
             - test
           filters:
             branches:
               only: master
-      - deploy:
+      - publish:
           requires:
             - test
           filters:
