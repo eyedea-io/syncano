@@ -1,5 +1,6 @@
 !dist
-coverage
+.coverage
+jest.config.ts
 src
 test
 .circleci
