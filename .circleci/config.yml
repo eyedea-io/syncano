@@ -15,8 +15,8 @@ jobs:
           keys:
           - dependencies-{{ checksum "package.json" }}
 
-      - run: npm install
-      - run: npm run build
+      - run: yarn
+      - run: yarn build
 
       - save_cache:
           paths:
@@ -38,8 +38,8 @@ jobs:
     steps:
       - restore_cache:
           key: repo-{{ .Environment.CIRCLE_SHA1 }}
-      - run: npm run test
-      - run: npm run codecov
+      - run: yarn test
+      - run: yarn codecov
       - store_artifacts:
           path: ~/repo/.coverage
           destination: coverage
