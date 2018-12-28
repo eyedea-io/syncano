@@ -75,15 +75,18 @@ workflows:
   build-test:
     jobs:
       - build
-      - deploy_staging:
+      - test:
           requires:
             - build
+      - deploy_staging:
+          requires:
+            - test
           filters:
             branches:
               only: master
       - deploy:
           requires:
-            - build
+            - test
           filters:
             branches:
               only: production
