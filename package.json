@@ -1,6 +1,6 @@
 {
   "name": "@eyedea/syncano",
-  "version": "0.4.1-alpha.1",
+  "version": "0.4.1-alpha.2",
   "description": "Custom wrapper for syncano-core library",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
