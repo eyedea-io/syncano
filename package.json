@@ -19,7 +19,8 @@
     "codecov": "codecov",
     "prebuild": "rimraf ./dist",
     "prepublish": "yarn build",
-    "test": "jest"
+    "test": "jest",
+    "canary": "npm version prerelease --preid=alpha"
   },
   "dependencies": {
     "@syncano/core": "^0.16.0-alpha.09656f7d",
