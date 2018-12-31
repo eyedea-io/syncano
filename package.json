@@ -24,13 +24,13 @@
   },
   "dependencies": {
     "@syncano/core": "^0.16.0-alpha.09656f7d",
-    "@syncano/validate": "^0.15.0",
-    "@types/node-fetch": "^2.1.4"
+    "@syncano/validate": "^0.15.0"
   },
   "devDependencies": {
     "@types/form-data": "^2.2.1",
     "@types/jest": "^23.3.10",
     "@types/node": "^10.12.18",
+    "@types/node-fetch": "^2.1.4",
     "codecov": "^3.1.0",
     "jest": "^23.6.0",
     "rimraf": "^2.6.2",
