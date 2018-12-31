@@ -16,9 +16,9 @@
     esutils "^2.0.2"
     js-tokens "^4.0.0"
 
-"@syncano/core@^0.16.0-alpha.09656f7d":
-  version "0.16.0-alpha.09656f7d"
-  resolved "https://registry.yarnpkg.com/@syncano/core/-/core-0.16.0-alpha.09656f7d.tgz#6d25c5e2bae1fa810811f4ae3dc89b5eb8dca2e9"
+"@syncano/core@^0.16.0-alpha.7e24cb04":
+  version "0.16.0-alpha.7e24cb04"
+  resolved "https://registry.yarnpkg.com/@syncano/core/-/core-0.16.0-alpha.7e24cb04.tgz#8d531d9bf31271bce339bed53df748601a5bb8f6"
   dependencies:
     debug "^4.1.0"
     form-data "^2.3.3"
