@@ -1,31 +1,31 @@
 import {Logger} from '../typings/syncano-core'
 import {HttpError} from './http-error'
 
-import {default as Syncano, SyncanoContext} from '@syncano/core'
+import * as S from '@syncano/core'
 // tslint:disable-next-line:no-var-requires
 const Validator = require('@syncano/validate').default
 
 export class Endpoint<Args = {
   [name: string]: any
 }> {
-  public ctx: SyncanoContext<Args>
+  public ctx: S.Context<Args>
   public user?: {
     id: number
     username: string
     user_key: string
   }
   public logger: Logger
-  public syncano: Syncano
+  public syncano: S.Core
 
-  constructor(ctx: SyncanoContext<Args>) {
+  constructor(ctx: S.Context<Args>) {
     this.ctx = ctx
     this.user = ctx.meta.user
-    this.syncano = new Syncano(ctx)
+    this.syncano = new S.Core(ctx)
     this.logger = this.syncano.logger(this.ctx.meta.executor)
     this.execute()
   }
 
-  public run?(core: Syncano, ctx: SyncanoContext<Args>): any
+  public run?(core: S.Core, ctx: S.Context<Args>): any
 
   public endpointDidCatch(err: Error) {
     console.warn(err)
