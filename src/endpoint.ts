@@ -1,7 +1,7 @@
+import * as S from '@syncano/core'
 import {Logger} from '../typings/syncano-core'
 import {HttpError} from './http-error'
 
-import * as S from '@syncano/core'
 // tslint:disable-next-line:no-var-requires
 const Validator = require('@syncano/validate').default
 

@@ -23,7 +23,7 @@
     "canary": "npm version prerelease --preid=alpha"
   },
   "dependencies": {
-    "@syncano/core": "0.16.0-alpha.820349fa",
+    "@syncano/core": "0.16.0-alpha.9825315b",
     "@syncano/validate": "^0.15.0"
   },
   "devDependencies": {
