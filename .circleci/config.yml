@@ -16,7 +16,6 @@ jobs:
           - dependencies-{{ checksum "package.json" }}
 
       - run: npm i
-      - run: npm run build
 
       - save_cache:
           paths:
