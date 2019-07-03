@@ -14,7 +14,8 @@
     "dist",
     "src",
     "bin",
-    "scripts"
+    "scripts",
+    "socket-template"
   ],
   "bin": {
     "syncano-scripts": "./bin/syncano-scripts.js"
