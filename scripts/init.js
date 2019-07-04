@@ -13,11 +13,11 @@ const chalk = require('react-dev-utils/chalk')
 const spawn = require('react-dev-utils/crossSpawn')
 const os = require('os')
 
-module.exports = function(appPath, appName, originalDirectory, template) {
+module.exports = function(socketPath, socketName, originalDirectory, template) {
   const ownPath = path.dirname(
     require.resolve(path.join(__dirname, '..', 'package.json'))
   )
-  const appPackage = require(path.join(appPath, 'package.json'))
+  const appPackage = require(path.join(socketPath, 'package.json'))
 
   // Copy over some of the devDependencies
   appPackage.dependencies = appPackage.dependencies || {}
@@ -35,15 +35,15 @@ module.exports = function(appPath, appName, originalDirectory, template) {
   // }
 
   fs.writeFileSync(
-    path.join(appPath, 'package.json'),
+    path.join(socketPath, 'package.json'),
     JSON.stringify(appPackage, null, 2) + os.EOL
   )
 
-  const readmeExists = fs.existsSync(path.join(appPath, 'README.md'))
+  const readmeExists = fs.existsSync(path.join(socketPath, 'README.md'))
   if (readmeExists) {
     fs.renameSync(
-      path.join(appPath, 'README.md'),
-      path.join(appPath, 'README.old.md')
+      path.join(socketPath, 'README.md'),
+      path.join(socketPath, 'README.old.md')
     )
   }
 
@@ -52,7 +52,7 @@ module.exports = function(appPath, appName, originalDirectory, template) {
     ? path.resolve(originalDirectory, template)
     : path.join(ownPath, 'socket-template')
   if (fs.existsSync(templatePath)) {
-    fs.copySync(templatePath, appPath)
+    fs.copySync(templatePath, socketPath)
   } else {
     console.error(
       `Could not locate supplied template: ${chalk.green(templatePath)}`
@@ -60,20 +60,33 @@ module.exports = function(appPath, appName, originalDirectory, template) {
     return
   }
 
+  try {
+    const data = fs.readFileSync(path.resolve(socketPath, 'syncano.yml'))
+    const fd = fs.openSync(path.resolve(socketPath, 'syncano.yml'), 'w+')
+    const insert = Buffer.from(`name: ${socketName} \n`)
+    fs.writeSync(fd, insert, 0, insert.length, 0)
+    fs.writeSync(fd, data, 0, data.length, insert.length)
+    fs.close(fd, err => {
+      if (err) throw err
+    })
+  } catch (err) {
+    console.error(`Could not update syncano.yml with socket name`)
+  }
+
   // Rename gitignore after the fact to prevent npm from renaming it to .npmignore
   // See: https://github.com/npm/npm/issues/1862
   try {
     fs.moveSync(
-      path.join(appPath, 'gitignore'),
-      path.join(appPath, '.gitignore'),
+      path.join(socketPath, 'gitignore'),
+      path.join(socketPath, '.gitignore'),
       []
     )
   } catch (err) {
     // Append if there's already a `.gitignore` file there
     if (err.code === 'EEXIST') {
-      const data = fs.readFileSync(path.join(appPath, 'gitignore'))
-      fs.appendFileSync(path.join(appPath, '.gitignore'), data)
-      fs.unlinkSync(path.join(appPath, 'gitignore'))
+      const data = fs.readFileSync(path.join(socketPath, 'gitignore'))
+      fs.appendFileSync(path.join(socketPath, '.gitignore'), data)
+      fs.unlinkSync(path.join(socketPath, 'gitignore'))
     } else {
       throw err
     }
@@ -86,7 +99,7 @@ module.exports = function(appPath, appName, originalDirectory, template) {
 
   // Install additional template dependencies, if present
   const templateDependenciesPath = path.join(
-    appPath,
+    socketPath,
     '.template.dependencies.json'
   )
   if (fs.existsSync(templateDependenciesPath)) {
@@ -99,10 +112,6 @@ module.exports = function(appPath, appName, originalDirectory, template) {
     fs.unlinkSync(templateDependenciesPath)
   }
 
-  // Install react and react-dom for backward compatibility with old CRA cli
-  // which doesn't install react and react-dom along with react-scripts
-  // or template is presetend (via --internal-testing-template)
-
   console.log()
 
   const proc = spawn.sync(command, args, {stdio: 'inherit'})
@@ -112,7 +121,7 @@ module.exports = function(appPath, appName, originalDirectory, template) {
   }
 
   console.log()
-  console.log(`Success! Created ${appName} at ${appPath}`)
+  console.log(`Success! Created ${socketName} at ${socketPath}`)
   if (readmeExists) {
     console.log()
     console.log(
