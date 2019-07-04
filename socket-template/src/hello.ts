@@ -1,18 +1,24 @@
 import * as S from '@eyedea/syncano'
 
 interface Args {
-  id: string
+  firstname?: string
+  lastname?: string
 }
 
 class Endpoint extends S.Endpoint<Args> {
-  async run({}: S.Core, {}: S.Context<Args>) {
-    if (!this.user) {
-      throw new S.HttpError('Unauthorized!', 401)
+  async run({response}: S.Core, {args}: S.Context<Args>) {
+    if (args.firstname && args.lastname) {
+      return {
+        message: `Hello ${args.firstname} ${args.lastname}!`
+      }
     }
 
-    return {
-      message: 'Hello World'
-    }
+    response.json(
+      {
+        message: 'You have to send "firstname" and "lastname" arguments!'
+      },
+      400
+    )
   }
 
   endpointDidCatch({message}: Error) {

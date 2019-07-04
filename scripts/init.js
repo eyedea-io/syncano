@@ -61,8 +61,8 @@ module.exports = function(socketPath, socketName, originalDirectory, template) {
   }
 
   try {
-    const data = fs.readFileSync(path.resolve(socketPath, 'syncano.yml'))
-    const fd = fs.openSync(path.resolve(socketPath, 'syncano.yml'), 'w+')
+    const data = fs.readFileSync(path.join(socketPath, 'socket.yml'))
+    const fd = fs.openSync(path.join(socketPath, 'socket.yml'), 'w+')
     const insert = Buffer.from(`name: ${socketName} \n`)
     fs.writeSync(fd, insert, 0, insert.length, 0)
     fs.writeSync(fd, data, 0, data.length, insert.length)
@@ -70,7 +70,9 @@ module.exports = function(socketPath, socketName, originalDirectory, template) {
       if (err) throw err
     })
   } catch (err) {
-    console.error(`Could not update syncano.yml with socket name`)
+    console.error(
+      `Could not update socket.yml with socket name: ${err.message}`
+    )
   }
 
   // Rename gitignore after the fact to prevent npm from renaming it to .npmignore
