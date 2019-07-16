@@ -19,15 +19,15 @@ module.exports = function(socketPath, socketName, originalDirectory, template) {
   )
   const appPackage = require(path.join(socketPath, 'package.json'))
 
-  // Copy over some of the devDependencies
-  appPackage.dependencies = appPackage.dependencies || {}
-
   // Setup the script rules
   appPackage.scripts = {
     build: 'syncano-scripts compile-src && syncano-scripts compile-env',
     'build:src': 'syncano-scripts compile-src',
     'build:env': 'syncano-scripts compile-env'
   }
+
+  // Copy over some of the devDependencies
+  appPackage.dependencies = appPackage.dependencies || {}
 
   // TODO: Setup the eslint config
   // appPackage.eslintConfig = {
