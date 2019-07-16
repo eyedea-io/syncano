@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "rootDir": "src",
-    "outDir": ".dist/src"
+    "outDir": ".dist/src",
+    "typeRoots": ["../typings", "node_modules/@types"]
   }
 }
