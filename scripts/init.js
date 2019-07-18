@@ -9,8 +9,8 @@ process.on('unhandledRejection', err => {
 
 const fs = require('fs-extra')
 const path = require('path')
-const chalk = require('react-dev-utils/chalk')
-const spawn = require('react-dev-utils/crossSpawn')
+const chalk = require('chalk')
+const spawn = require('cross-spawn')
 const os = require('os')
 
 module.exports = function(socketPath, socketName, originalDirectory, template) {
