@@ -1,5 +1,6 @@
 import * as S from '@syncano/core'
 import {Logger} from '../typings/syncano-core'
+import {NotFoundError} from '@syncano/core/lib/errors'
 import {HttpError} from './http-error'
 
 // tslint:disable-next-line:no-var-requires
@@ -52,6 +53,10 @@ export class Endpoint<Args = {
           const {message, statusCode} = res
 
           this.syncano.response.json({message}, statusCode as any)
+        } else if (res instanceof NotFoundError) {
+          const {message} = res
+
+          this.syncano.response.json({message}, 404)
         } else if (res !== null && typeof res === 'object' && !isResponse) {
           this.syncano.response.json(res)
         } else if (typeof res === 'string') {
