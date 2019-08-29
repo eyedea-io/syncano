@@ -9,8 +9,6 @@ spawn.sync('node', [
   'commonjs',
   '--moduleResolution',
   'node',
-  '--sourceMap',
-  'true',
   '--strict',
   'true'
 ])
