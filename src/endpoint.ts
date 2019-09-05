@@ -1,6 +1,6 @@
 import * as S from '@syncano/core'
-import {Logger} from '../typings/syncano-core'
 import {NotFoundError} from '@syncano/core/lib/errors'
+import {Logger} from '../typings/syncano-core'
 import {HttpError} from './http-error'
 
 // tslint:disable-next-line:no-var-requires
