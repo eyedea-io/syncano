@@ -1,4 +1,5 @@
 # @eyedea/syncano
+
 Custom wrapper for @syncano/core library.
 
 [![npm version](https://img.shields.io/npm/v/unswitch.svg)](https://www.npmjs.com/package/unswitch)
@@ -45,6 +46,43 @@ class Endpoint extends S.Endpoint<Args> {
 }
 
 export default ctx => new Endpoint(ctx)
+```
+
+## Tests
+
+```tsx
+/* syncano/resource/__tests__/get.test.js */
+import {run, stub, createSyncanoCoreMock} from '@eyedea/syncano'
+
+describe('resource/create', () => {
+  it('should not fail', async () => {
+    const meta = {
+      user: undefined
+    }
+    const args = {
+      id: 1
+    }
+    const mocks = createSyncanoCoreMock({
+      endpoint: {
+        get: stub().resolves({
+          inOrganization: true
+        })
+      },
+      data: {
+        resource: {
+          find: stub().resolves({
+            id: args.id,
+            organization: 20
+          }),
+          findOrFail: stub().resolves(args)
+        }
+      }
+    })
+
+    const result = await run('get', {args, meta}, {mocks})
+    expect(result).toHaveProperty('code', 401)
+  })
+})
 ```
 
 ## License
