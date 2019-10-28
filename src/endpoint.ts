@@ -1,14 +1,16 @@
 import * as S from '@syncano/core'
 import {NotFoundError} from '@syncano/core/lib/errors'
-import {Logger} from '../typings/syncano-core'
 import {HttpError} from './http-error'
+import {Logger} from './types'
 
 // tslint:disable-next-line:no-var-requires
 const Validator = require('@syncano/validate').default
 
-export class Endpoint<Args = {
-  [name: string]: any
-}> {
+export class Endpoint<
+  Args = {
+    [name: string]: any
+  }
+> {
   public ctx: S.Context<Args>
   public user?: {
     id: number
@@ -64,7 +66,8 @@ export class Endpoint<Args = {
         }
       } else {
         this.syncano.response.json({
-          message: 'No `run` method found on the returned endpoint instance: you may have forgotten to define `run`.'
+          message:
+            'No `run` method found on the returned endpoint instance: you may have forgotten to define `run`.'
         })
       }
     } catch (err) {

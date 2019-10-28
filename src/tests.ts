@@ -1,11 +1,11 @@
 const merge = require('lodash/merge')
 import * as S from '@syncano/core'
+import SyncanoTest from '@syncano/test'
 import {SinonStub, stub} from 'sinon'
-import {Context} from '.'
-
-const {run}: SyncanoTestModule = require('@syncano/test')
+import {SyncanoTestRun} from './types'
 const {Core} = S
 let stubbed: SinonStub | null = null
+const run = SyncanoTest.run as SyncanoTestRun
 
 export const createSyncanoCoreMock = (customMock: Partial<S.Core>) => {
   if (stubbed) {
@@ -29,15 +29,3 @@ export const createSyncanoCoreMock = (customMock: Partial<S.Core>) => {
 }
 
 export {run}
-
-interface SyncanoTestModule {
-  run: <T>(
-    endpointName: string,
-    ctx: Partial<Context<T>>,
-    params?: {
-      mocks?: any
-      [key: string]: any
-    },
-    callType?: 'endpoint' | 'eventHandler'
-  ) => Promise<any>
-}

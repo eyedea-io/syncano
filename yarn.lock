@@ -877,10 +877,10 @@
   resolved "https://registry.yarnpkg.com/@syncano/schema/-/schema-0.15.0.tgz#cb1c0535e473b796ce4fa8b30e5e16e38fc46191"
   integrity sha512-UEnqdnNkVYUgTKyqw/tH/zTDNB+nWv64mL4dxtVQs+xaOKaaD8n+2YbeOj0NGXrD0wh3gNAKkiD6LDR/7qu9nw==
 
-"@syncano/test@0.15.1-alpha.30":
-  version "0.15.1-alpha.30"
-  resolved "https://registry.yarnpkg.com/@syncano/test/-/test-0.15.1-alpha.30.tgz#a374d25d068d24560fa6c71968468f37ebf1f297"
-  integrity sha512-YZDN9OGJ9bPHDbgbKaWdyglCNJbc2HScLuX9kXlozH2zI3vptP9AQuzjzpHMfdn6RxIFfRSLBWkjgqXaUocyCg==
+"@syncano/test@0.15.1-alpha.31":
+  version "0.15.1-alpha.31"
+  resolved "https://registry.yarnpkg.com/@syncano/test/-/test-0.15.1-alpha.31.tgz#bf5ed670ae8b28cda99262c15a075cbacd5769ea"
+  integrity sha512-qezINydR0P20kmKfq3O+cRj5YuAHgHCkzzQr31krkwEXjEpjBtoBA8Wmjfig7F8KgPGCUyAsmYsc/tamnm0Flg==
   dependencies:
     "@syncano/validate" "0.15.0"
     bluebird "^3.5.3"
@@ -934,6 +934,11 @@
   integrity sha512-CeBpmX1J8kWLcDEnI3Cl2Eo6RfbGvzUctA+CjZUhOKDFbLfcr7fc4usEqLNWetrlJd7RhAkyYe2czXop4fICpw==
   dependencies:
     "@babel/types" "^7.3.0"
+
+"@types/bluebird@3.5.28":
+  version "3.5.28"
+  resolved "https://registry.yarnpkg.com/@types/bluebird/-/bluebird-3.5.28.tgz#04c1a520ff076649236bc8ca21198542ce2bdb09"
+  integrity sha512-0Vk/kqkukxPKSzP9c8WJgisgGDx5oZDbsLLWIP5t70yThO/YleE+GEm2S1GlRALTaack3O7U5OS5qEm7q2kciA==
 
 "@types/form-data@2.2.1", "@types/form-data@^2.2.1":
   version "2.2.1"

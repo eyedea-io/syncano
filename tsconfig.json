@@ -1,4 +1,3 @@
-
 {
   "compilerOptions": {
     "module": "commonjs",
@@ -16,23 +15,9 @@
     "suppressImplicitAnyIndexErrors": true,
     "noUnusedLocals": true,
     "allowSyntheticDefaultImports": true,
-    "lib": [
-      "es2015",
-      "es2016",
-      "dom"
-    ],
-    "typeRoots": [
-      "./node_modules/@types",
-      "./typings"
-    ],
+    "lib": ["es2015", "es2016", "dom"],
     "declaration": true
   },
-  "include": [
-    "src/**/*"
-  ],
-  "exclude": [
-    "node_modules/**/*",
-    "src/**/*.test.tsx",
-    "test/**/*"
-  ]
+  "include": ["src/**/*"],
+  "exclude": ["node_modules/**/*", "src/**/*.test.tsx", "test/**/*"]
 }
