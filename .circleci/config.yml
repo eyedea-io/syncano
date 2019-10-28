@@ -3,7 +3,7 @@ jobs:
   build:
     name: Build
     docker:
-      - image: circleci/node:9.10.0
+      - image: circleci/node:lts
 
     working_directory: ~/repo
 
@@ -30,7 +30,7 @@ jobs:
   test:
     name: Tests
     docker:
-      - image: circleci/node:9.10.0
+      - image: circleci/node:lts
 
     working_directory: ~/repo
 
@@ -47,7 +47,7 @@ jobs:
   publish_canary:
     name: Deploy
     docker:
-      - image: circleci/node:9.10.0
+      - image: circleci/node:lts
 
     working_directory: ~/repo
 
@@ -60,7 +60,7 @@ jobs:
   publish:
     name: Deploy
     docker:
-      - image: circleci/node:9.10.0
+      - image: circleci/node:lts
 
     working_directory: ~/repo
 

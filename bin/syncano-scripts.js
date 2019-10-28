@@ -25,6 +25,7 @@ script = script === 'dev' ? 'start' : script
 const nodeArgs = scriptIndex > 0 ? args.slice(0, scriptIndex) : []
 
 switch (script) {
+  case 'test':
   case 'init':
   case 'compile-src':
   case 'compile-env': {
