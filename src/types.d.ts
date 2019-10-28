@@ -5,7 +5,7 @@ export interface Logger {
   debug: (...messages: any[]) => void
   info: (...messages: any[]) => void
   error: (...messages: any[]) => void
-  listen?: (callback: (event: Object) => void) => void
+  listen?: (callback: (event: any) => void) => void
 }
 type SyncanoTestRun = <T extends {}>(
   endpointName: string,
