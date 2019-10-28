@@ -877,10 +877,10 @@
   resolved "https://registry.yarnpkg.com/@syncano/schema/-/schema-0.15.0.tgz#cb1c0535e473b796ce4fa8b30e5e16e38fc46191"
   integrity sha512-UEnqdnNkVYUgTKyqw/tH/zTDNB+nWv64mL4dxtVQs+xaOKaaD8n+2YbeOj0NGXrD0wh3gNAKkiD6LDR/7qu9nw==
 
-"@syncano/test@0.15.1-alpha.31":
-  version "0.15.1-alpha.31"
-  resolved "https://registry.yarnpkg.com/@syncano/test/-/test-0.15.1-alpha.31.tgz#bf5ed670ae8b28cda99262c15a075cbacd5769ea"
-  integrity sha512-qezINydR0P20kmKfq3O+cRj5YuAHgHCkzzQr31krkwEXjEpjBtoBA8Wmjfig7F8KgPGCUyAsmYsc/tamnm0Flg==
+"@syncano/test@0.15.1-alpha.33":
+  version "0.15.1-alpha.33"
+  resolved "https://registry.yarnpkg.com/@syncano/test/-/test-0.15.1-alpha.33.tgz#eb65ce1e707df88fff8c58ede75b65a09677b03e"
+  integrity sha512-Xv9HEjLwAorIPwcTwGC9uvIiuJtiAyhSX3Wo4x3IjdSz5mwqm+guMxdQE5lta2Dpyshr26cns8tsj5sx8Lv06A==
   dependencies:
     "@syncano/validate" "0.15.0"
     bluebird "^3.5.3"
@@ -991,10 +991,10 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.0.10.tgz#51babf9c7deadd5343620055fc8aff7995c8b031"
   integrity sha512-LcsGbPomWsad6wmMNv7nBLw7YYYyfdYcz6xryKYQhx89c3XXan+8Q6AJ43G5XDIaklaVkK3mE4fCb0SBvMiPSQ==
 
-"@types/node@10.12.18":
-  version "10.12.18"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-10.12.18.tgz#1d3ca764718915584fcd9f6344621b7672665c67"
-  integrity sha512-fh+pAqt4xRzPfqA6eh3Z2y6fyZavRIumvjhaCL753+TVkGKGhpPeyrJG2JftD0T9q4GF00KjefsQ+PQNDdWQaQ==
+"@types/node@12.11.7":
+  version "12.11.7"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.11.7.tgz#57682a9771a3f7b09c2497f28129a0462966524a"
+  integrity sha512-JNbGaHFCLwgHn/iCckiGSOZ1XYHsKFwREtzPwSGCVld1SGhOlmZw2D4ZI94HQCrBHbADzW9m4LER/8olJTRGHA==
 
 "@types/sinon@7.5.0":
   version "7.5.0"
@@ -3023,6 +3023,11 @@ lodash.isempty@^4.4.0:
   resolved "https://registry.yarnpkg.com/lodash.isempty/-/lodash.isempty-4.4.0.tgz#6f86cbedd8be4ec987be9aaf33c9684db1b31e7e"
   integrity sha1-b4bL7di+TsmHvpqvM8loTbGzHn4=
 
+lodash.memoize@4.x:
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/lodash.memoize/-/lodash.memoize-4.1.2.tgz#bcc6c49a42a2840ed997f323eada5ecd182e0bfe"
+  integrity sha1-vMbEmkKihA7Zl/Mj6tpezRguC/4=
+
 lodash.merge@^4.6.1:
   version "4.6.1"
   resolved "https://registry.yarnpkg.com/lodash.merge/-/lodash.merge-4.6.1.tgz#adc25d9cb99b9391c59624f379fbba60d7111d54"
@@ -4340,15 +4345,16 @@ tr46@^1.0.1:
   dependencies:
     punycode "^2.1.0"
 
-ts-jest@23.10.5:
-  version "23.10.5"
-  resolved "https://registry.yarnpkg.com/ts-jest/-/ts-jest-23.10.5.tgz#cdb550df4466a30489bf70ba867615799f388dd5"
-  integrity sha512-MRCs9qnGoyKgFc8adDEntAOP64fWK1vZKnOYU1o2HxaqjdJvGqmkLCPCnVq1/If4zkUmEjKPnCiUisTrlX2p2A==
+ts-jest@24.1.0:
+  version "24.1.0"
+  resolved "https://registry.yarnpkg.com/ts-jest/-/ts-jest-24.1.0.tgz#2eaa813271a2987b7e6c3fefbda196301c131734"
+  integrity sha512-HEGfrIEAZKfu1pkaxB9au17b1d9b56YZSqz5eCVE8mX68+5reOvlM93xGOzzCREIov9mdH7JBG+s0UyNAqr0tQ==
   dependencies:
     bs-logger "0.x"
     buffer-from "1.x"
     fast-json-stable-stringify "2.x"
     json5 "2.x"
+    lodash.memoize "4.x"
     make-error "1.x"
     mkdirp "0.x"
     resolve "1.x"

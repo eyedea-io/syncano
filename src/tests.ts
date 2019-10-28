@@ -1,6 +1,6 @@
 const merge = require('lodash/merge')
 import * as S from '@syncano/core'
-import SyncanoTest from '@syncano/test'
+import * as SyncanoTest from '@syncano/test'
 import {SinonStub, stub} from 'sinon'
 import {SyncanoTestRun} from './types'
 const {Core} = S
