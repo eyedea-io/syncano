@@ -35,10 +35,11 @@
     "build": "tsc",
     "codecov": "codecov",
     "prebuild": "rimraf ./dist",
-    "prepublish": "npm run build",
+    "prepublish": "npm run snyk-protect && npm run build",
     "test": "jest",
     "canary": "npm version prerelease --preid=alpha",
-    "postinstall": "node ./scripts/postinstall.js"
+    "postinstall": "node ./scripts/postinstall.js",
+    "snyk-protect": "snyk protect"
   },
   "dependencies": {
     "@babel/core": "7.6.4",
@@ -55,7 +56,8 @@
     "cross-spawn": "6.0.5",
     "fs-extra": "8.1.0",
     "jest": "24.9.0",
-    "sinon": "7.5.0"
+    "sinon": "7.5.0",
+    "snyk": "^1.239.3"
   },
   "devDependencies": {
     "@types/form-data": "2.2.1",
@@ -71,5 +73,6 @@
     "bracketSpacing": false,
     "semi": false,
     "singleQuote": true
-  }
+  },
+  "snyk": true
 }
