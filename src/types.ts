@@ -7,7 +7,7 @@ export interface Logger {
   error: (...messages: any[]) => void
   listen?: (callback: (event: any) => void) => void
 }
-type SyncanoTestRun = <T extends {}>(
+export type SyncanoTestRun = <T extends {}>(
   endpointName: string,
   ctx: Partial<S.Context<T>>,
   params?: {
