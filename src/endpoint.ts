@@ -30,7 +30,7 @@ export class Endpoint<
 
   public run?(core: S.Core, ctx: S.Context<Args>): any
 
-  public endpointDidCatch(err: Error) {
+  public endpointDidCatch(err: Error): void {
     console.warn(err)
   }
 

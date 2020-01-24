@@ -99,7 +99,7 @@ module.exports = function(socketPath, socketName, originalDirectory, template) {
     }
   }
 
-  let command = 'yarnpkg'
+  const command = 'yarnpkg'
   let args = ['add', '-D', '-E']
 
   args.push('typescript')

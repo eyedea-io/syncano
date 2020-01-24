@@ -19,7 +19,7 @@ describe('Endpoint', () => {
   }
   const construct = (res: any) => {
     return class extends S.Endpoint {
-      public async run({response}: S.Core) {
+      public async run() {
         if (typeof res === 'function') {
           return res()
         }
@@ -43,7 +43,7 @@ describe('Endpoint', () => {
     expect(s).toHaveProperty('syncano.data')
   })
 
-  it('should set response to returned object', (done) => {
+  it('should set response to returned object', done => {
     const Endpoint = construct({hello: 'world'})
     // tslint:disable-next-line:no-unused-expression
     new Endpoint({
@@ -55,7 +55,7 @@ describe('Endpoint', () => {
     } as any)
   })
 
-  it('should set response to returned string', (done) => {
+  it('should set response to returned string', done => {
     const Endpoint = construct('Hello world')
     // tslint:disable-next-line:no-unused-expression
     new Endpoint({
@@ -67,7 +67,7 @@ describe('Endpoint', () => {
     } as any)
   })
 
-  it('should handle returned response.json', (done) => {
+  it('should handle returned response.json', done => {
     class Endpoint extends S.Endpoint {
       public async run({response}: S.Core) {
         return response.json({hello: 'world'})
@@ -83,7 +83,7 @@ describe('Endpoint', () => {
     } as any)
   })
 
-  it('should handle returned response', (done) => {
+  it('should handle returned response', done => {
     class Endpoint extends S.Endpoint {
       public async run({response}: S.Core) {
         return response('Hello world')
@@ -99,7 +99,7 @@ describe('Endpoint', () => {
     } as any)
   })
 
-  it('should handle throw new S.HttpError', (done) => {
+  it('should handle throw new S.HttpError', done => {
     class Endpoint extends S.Endpoint {
       public async run() {
         throw new S.HttpError('Unauthorized', 401)
@@ -115,7 +115,7 @@ describe('Endpoint', () => {
     } as any)
   })
 
-  it('should handle return new S.HttpError', (done) => {
+  it('should handle return new S.HttpError', done => {
     class Endpoint extends S.Endpoint {
       public async run() {
         return new S.HttpError('Unauthorized', 401)
@@ -136,7 +136,7 @@ describe('Endpoint', () => {
     } as any)
   })
 
-  it('should throw an error when validation fails', (done) => {
+  it('should throw an error when validation fails', done => {
     class Endpoint extends S.Endpoint {
       public async run() {
         return 'Should fail'
@@ -153,13 +153,15 @@ describe('Endpoint', () => {
         }
       },
       setResponse: (res: any) => {
-        expect(res.content).toBe(JSON.stringify({'': ["Should have required property 'arg'"]}))
+        expect(res.content).toBe(
+          JSON.stringify({'': ["Should have required property 'arg'"]})
+        )
         done()
       }
     } as any)
   })
 
-  it('should console.warn on error', (done) => {
+  it('should console.warn on error', done => {
     const warn = console.warn
     console.warn = () => {
       console.warn = warn
