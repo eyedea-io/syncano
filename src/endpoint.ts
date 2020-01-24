@@ -38,7 +38,9 @@ export class Endpoint<
     this.ctx.meta.metadata = {
       ...this.ctx.meta.metadata
     }
-    const validator = new Validator(this.ctx)
+    const validator = new Validator(this.ctx, {
+      cacheCompiledSchema: true
+    })
 
     try {
       if (typeof this.run === 'function') {
