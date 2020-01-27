@@ -2,8 +2,8 @@
 
 Custom wrapper for @syncano/core library.
 
-[![npm version](https://img.shields.io/npm/v/unswitch.svg)](https://www.npmjs.com/package/unswitch)
-[![license](https://img.shields.io/github/license/eyedea-io/syncano.svg)](https://github.com/eyedea-io/syncano/blob/master/LICENSE)
+[![npm version](https://img.shields.io/npm/v/@eyedea/syncano)](https://npmjs.com/package/@eyedea/syncano)
+[![license](https://img.shields.io/npm/l/@eyedea/syncano)](https://github.com/eyedea-io/syncano/blob/master/LICENSE)
 
 ## Install
 
@@ -50,40 +50,7 @@ export default ctx => new Endpoint(ctx)
 
 ## Tests
 
-```tsx
-/* syncano/resource/__tests__/get.test.js */
-import {run, stub, createSyncanoCoreMock} from '@eyedea/syncano'
-
-describe('resource/create', () => {
-  it('should not fail', async () => {
-    const meta = {
-      user: undefined
-    }
-    const args = {
-      id: 1
-    }
-    const mocks = createSyncanoCoreMock({
-      endpoint: {
-        get: stub().resolves({
-          inOrganization: true
-        })
-      },
-      data: {
-        resource: {
-          find: stub().resolves({
-            id: args.id,
-            organization: 20
-          }),
-          findOrFail: stub().resolves(args)
-        }
-      }
-    })
-
-    const result = await run('get', {args, meta}, {mocks})
-    expect(result).toHaveProperty('code', 401)
-  })
-})
-```
+View [@eyedea/syncano-test](https://github.com/eyedea-io/syncano-test)
 
 ## License
 
