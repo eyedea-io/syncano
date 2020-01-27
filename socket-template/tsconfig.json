@@ -1,7 +1,9 @@
 {
+  "exclude": ["node_modules", ".coverage", "__tests__"],
   "compilerOptions": {
     "rootDir": "src",
     "outDir": ".dist/src",
+    "lib": ["ES2015", "ES2016"],
     "typeRoots": ["../typings", "node_modules/@types"]
   }
 }

@@ -23,16 +23,12 @@ module.exports = function(socketPath, socketName, originalDirectory, template) {
   appPackage.scripts = {
     build: 'syncano-scripts compile-src && syncano-scripts compile-env',
     'build:src': 'syncano-scripts compile-src',
-    'build:env': 'syncano-scripts compile-env',
-    test: 'syncano-scripts test'
+    'build:env': 'syncano-scripts compile-env'
   }
 
   // Copy over some of the devDependencies
   appPackage.dependencies = appPackage.dependencies || {}
-
-  appPackage.babel = {
-    extends: '@eyedea/syncano/config/babel'
-  }
+  appPackage.devDependencies = appPackage.devDependencies || {}
 
   // TODO: Setup the eslint config
   // appPackage.eslintConfig = {
@@ -103,6 +99,7 @@ module.exports = function(socketPath, socketName, originalDirectory, template) {
   let args = ['add', '-D', '-E']
 
   args.push('typescript')
+  args.push('@eyedea/syncano-test')
 
   // Install additional template dependencies, if present
   const templateDependenciesPath = path.join(
