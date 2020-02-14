@@ -45,7 +45,7 @@ class Endpoint extends S.Endpoint<Args> {
   }
 }
 
-export default ctx => new Endpoint(ctx)
+export default async (ctx: S.Context) => S.init(MyEndpoint, ctx)
 ```
 
 ## Tests
