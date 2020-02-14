@@ -6,11 +6,7 @@ import {Logger} from './types'
 // tslint:disable-next-line:no-var-requires
 const Validator = require('@syncano/validate').default
 
-export class Endpoint<
-  Args = {
-    [name: string]: any
-  }
-> {
+export class Endpoint<Args = {[name: string]: any}> {
   public ctx: S.Context<Args>
   public user?: {
     id: number
@@ -20,15 +16,21 @@ export class Endpoint<
   public logger: Logger
   public syncano: S.Core
 
-  constructor(ctx: S.Context<Args>) {
+  constructor(ctx: S.Context<Args>, options = {async: false}) {
     this.ctx = ctx
     this.user = ctx.meta.user
     this.syncano = new S.Core(ctx)
     this.logger = this.syncano.logger(this.ctx.meta.executor)
-    this.execute()
+    if (!options.async) {
+      this.execute()
+    }
   }
 
   public run?(core: S.Core, ctx: S.Context<Args>): any
+
+  public async runAsync() {
+    return this.execute()
+  }
 
   public endpointDidCatch(err: Error): void {
     console.warn(err)
@@ -83,3 +85,5 @@ export class Endpoint<
     }
   }
 }
+
+export const init = async (EndpointClass: any, ctx: S.Context) => new EndpointClass(ctx, {async: true}).runAsync()
