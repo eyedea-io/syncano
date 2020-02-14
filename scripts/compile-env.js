@@ -4,7 +4,9 @@ const {mkdirSync, readFileSync, writeFileSync} = require('fs')
 
 try {
   mkdirSync(resolve('.dist'))
-} catch (err) {}
+} catch (err) {
+  //
+}
 
 try {
   const packageJsonFile = readFileSync(resolve('package.json'), {
@@ -43,4 +45,4 @@ const result = spawn.sync(
   }
 )
 
-process.exit(result.status)
+process.exitCode = result.status

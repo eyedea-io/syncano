@@ -1,14 +1,23 @@
-const spawn = require('cross-spawn')
-const {resolve} = require('path')
-
-spawn.sync('node', [
-  resolve('node_modules/.bin/tsc'),
-  '--target',
-  'es6',
-  '--module',
-  'commonjs',
-  '--moduleResolution',
-  'node',
-  '--strict',
-  'true'
-])
+const {spawn} = require('cross-spawn')
+const result = spawn.sync(
+  'tsc',
+  [
+    '--target',
+    'es6',
+    '--module',
+    'commonjs',
+    '--moduleResolution',
+    'node',
+    '--strict',
+    'true',
+    '--skipLibCheck',
+    'true',
+    '--incremental',
+    '--noEmitOnError',
+    'true'
+  ],
+  {
+    stdio: 'inherit'
+  }
+)
+process.exitCode = result.status
